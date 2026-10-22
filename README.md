@@ -14,7 +14,7 @@ En lokal kunnskapsbase over **gjeldende norsk lovverk** (alle lover og sentrale 
 
 ## Kom i gang
 
-Krever Node 22+, Docker Desktop og [Ollama](https://ollama.com/download) (detaljer under [Forutsetninger](#forutsetninger)).
+Krever Node 22+, Docker med Compose og [Ollama](https://ollama.com/download) (detaljer under [Forutsetninger](#forutsetninger)).
 
 ```bash
 npm install
@@ -67,7 +67,7 @@ Lovdata publicData ──npm run sync──▶ Qdrant (Docker) ◀── MCP-ser
 | Verktøy | Hvorfor | Installasjon |
 |---|---|---|
 | **Node.js 22+** | kjører sync, søk og MCP-server | `brew install node` eller [nvm](https://github.com/nvm-sh/nvm) |
-| **Docker Desktop** | kjører Qdrant (vektordatabasen) | [docker.com](https://www.docker.com/products/docker-desktop/) |
+| **Docker med Compose** | kjører Qdrant (vektordatabasen) | [Docker Desktop](https://www.docker.com/products/docker-desktop/), [OrbStack](https://orbstack.dev), [Colima](https://github.com/abiosoft/colima) eller Docker Engine på Linux |
 | **Ollama** | lager embeddings lokalt, både ved innlesing og ved hvert søk | se under |
 | **Claude Code** | «advokaten» | [claude.com/claude-code](https://claude.com/claude-code) |
 
