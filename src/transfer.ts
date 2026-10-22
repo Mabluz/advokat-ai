@@ -91,10 +91,23 @@ async function exportIndex() {
   );
 }
 
+/** Explains the most common mistakes: a zip file or a sub-folder in import/ instead of the files themselves. */
+async function missingManifestHint(): Promise<string> {
+  const entries = await readdir(IMPORT_DIR, { withFileTypes: true }).catch(() => []);
+  const zip = entries.find((e) => e.isFile() && /\.(zip|tar|tar\.gz|tgz|7z|rar)$/i.test(e.name));
+  if (zip) return `Fant ikke import/manifest.json, men import/${zip.name}. Pakk den ut, og legg filene rett i import/ (ikke i en undermappe).`;
+  for (const dir of entries.filter((e) => e.isDirectory() && e.name !== "dommer")) {
+    if (await stat(path.join(IMPORT_DIR, dir.name, "manifest.json")).catch(() => undefined)) {
+      return `Filene ligger i import/${dir.name}/. Flytt innholdet av den mappen rett inn i import/.`;
+    }
+  }
+  return "Fant ikke import/manifest.json – legg alle filene fra en eksport (manifest.json, docs.json, state.json og *.snapshot.gz) rett i import/.";
+}
+
 async function importIndex() {
   const manifest = JSON.parse(
-    await readFile(path.join(IMPORT_DIR, "manifest.json"), "utf8").catch(() => {
-      throw new Error("Fant ikke import/manifest.json – legg alle filene fra en eksport i import/.");
+    await readFile(path.join(IMPORT_DIR, "manifest.json"), "utf8").catch(async () => {
+      throw new Error(await missingManifestHint());
     }),
   ) as Manifest;
   if (manifest.embedModel !== EMBED_MODEL || manifest.embedDim !== EMBED_DIM) {
