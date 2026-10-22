@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Nattlig synk av lovdata. Installeres med: scripts/install-launchd.sh -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>no.advokat.sync</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-lc</string>
+    <string>cd "__ROOT__" &amp;&amp; npm run sync</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>4</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>__ROOT__/data/sync.log</string>
+  <key>StandardErrorPath</key><string>__ROOT__/data/sync.log</string>
+</dict>
+</plist>

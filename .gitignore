@@ -1,0 +1,9 @@
+node_modules/
+data/
+qdrant_storage/
+export/*
+!export/.gitkeep
+import/*
+!import/.gitkeep
+dommer/*
+!dommer/.gitkeep

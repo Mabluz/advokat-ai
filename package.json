@@ -1,10 +1,32 @@
 {
-  "name": "${PROJECT_NAME}",
+  "name": "advokat",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lokal kunnskapsbase over gjeldende norsk lovverk (Lovdata) i Qdrant, eksponert for Claude via MCP",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sync": "tsx src/sync.ts",
+    "sync:full": "tsx src/sync.ts --full",
+    "sync:rolig": "tsx src/sync.ts --rolig",
+    "sync:reindex": "tsx src/sync.ts --reindex",
+    "dommer": "tsx src/dommer/sync.ts",
+    "export": "tsx src/transfer.ts export",
+    "import": "tsx src/transfer.ts import",
+    "mcp": "tsx src/mcp-server.ts",
+    "search": "tsx src/cli-search.ts",
+    "test": "tsx --test src/**/*.test.ts",
+    "typecheck": "tsc --noEmit"
   },
-  "private": true
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@qdrant/js-client-rest": "^1.19.0",
+    "cheerio": "^1.2.0",
+    "unpdf": "^1.8.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
 }
