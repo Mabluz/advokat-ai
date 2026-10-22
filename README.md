@@ -12,6 +12,29 @@ En lokal kunnskapsbase over **gjeldende norsk lovverk** (alle lover og sentrale 
 > - **Forvaltning:** klage på vedtak fra kommunen, NAV eller andre etater, innsyn
 > - **Skatt og selskap:** valg av selskapsform, styreansvar, enkle skattespørsmål
 
+## Kom i gang
+
+Krever Node 22+, Docker Desktop og [Ollama](https://ollama.com/download) (detaljer under [Forutsetninger](#forutsetninger)).
+
+```bash
+npm install
+ollama pull bge-m3            # embedding-modellen (ca. 1,2 GB)
+docker compose up -d          # Qdrant på http://localhost:6343
+```
+
+Fyll så databasen på én av to måter:
+
+```bash
+# A) Har du fått en eksport: legg innholdet i import/, så tar det et par minutter
+npm run import
+npm run sync                  # henter endringer hos Lovdata siden eksporten
+
+# B) Bygg alt selv: ca. 50 min, og maskinen blir varm (bruk sync:rolig for å skåne den)
+npm run sync
+```
+
+Start `claude` i prosjektmappa, godkjenn MCP-serveren `norsk-lov` (sjekk med `/mcp`), og still spørsmålet ditt.
+
 ## Hva som hentes ned
 
 Kilden er Lovdatas åpne, offisielle API ([api.lovdata.no](https://api.lovdata.no/)). Lovdata oppdaterer datasettene hver natt, og all tekst er ajourført med endringer. To datasett brukes:
