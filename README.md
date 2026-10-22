@@ -25,7 +25,7 @@ docker compose up -d          # Qdrant på http://localhost:6343
 Fyll så databasen på én av to måter:
 
 ```bash
-# A) Har du fått en eksport: legg innholdet i import/, så tar det et par minutter
+# A) Har du fått en eksport: pakk den ut, og legg filene rett i import/ (ikke zip-filen, og ikke en undermappe)
 npm run import
 npm run sync                  # henter endringer hos Lovdata siden eksporten
 
@@ -102,7 +102,19 @@ docker compose up -d          # Qdrant på http://localhost:6343 (dashboard: /da
 
 Deretter har du to valg:
 
-**A) Importer en ferdig indeks (anbefalt, tar et par minutter).** Har du fått en eksport fra noen, legg *hele* innholdet (snapshot-filene, `docs.json`, `state.json`, `manifest.json` og eventuelt `dommer/`) i `import/` og kjør:
+**A) Importer en ferdig indeks (anbefalt, tar et par minutter).** Har du fått en eksport fra noen (ofte som zip), **pakk den ut først** og legg filene **rett i `import/`**, ikke zip-filen og ikke en undermappe. Slik skal det se ut:
+
+```
+import/
+├── manifest.json
+├── docs.json
+├── state.json
+├── norsk_lov.snapshot.gz
+├── rettspraksis.snapshot.gz   (hvis eksporten har dommer)
+└── dommer/                    (hvis eksporten har dommer)
+```
+
+Kjør deretter:
 
 ```bash
 npm run import
