@@ -2,6 +2,16 @@
 
 En lokal kunnskapsbase over **gjeldende norsk lovverk** (alle lover og sentrale forskrifter fra Lovdata), gjort søkbar for Claude Code via MCP. Claude svarer på juridiske spørsmål med utgangspunkt i lovtekst den faktisk har slått opp, og siterer paragrafer med lenke til Lovdata. Reglene for hvordan Claude skal oppføre seg står i [`CLAUDE.md`](CLAUDE.md).
 
+## Hva kan advokaten hjelpe med?
+> - **Familie og arv:** skilsmisse, samboerbrudd, deling av formue, barnefordeling og samvær, testament, arveoppgjør
+> - **Fast eiendom og bygg:** feil og mangler ved boligkjøp, naboforhold, husleie, håndverkertjenester, byggesaker og TEK17
+> - **Arbeidsliv:** oppsigelse, avskjed, arbeidstid, lønn, permisjon, arbeidsavtaler
+> - **Kontrakt og forbruker:** reklamasjon, kjøp av varer og tjenester, angrerett, inkasso
+> - **Tvister:** forliksrådet, frister, hvordan du går fram og hva det kan koste
+> - **Strafferett:** rettighetene dine som mistenkt eller fornærmet, og hvordan straffesaker foregår
+> - **Forvaltning:** klage på vedtak fra kommunen, NAV eller andre etater, innsyn
+> - **Skatt og selskap:** valg av selskapsform, styreansvar, enkle skattespørsmål
+
 ## Hva som hentes ned
 
 Kilden er Lovdatas åpne, offisielle API ([api.lovdata.no](https://api.lovdata.no/)). Lovdata oppdaterer datasettene hver natt, og all tekst er ajourført med endringer. To datasett brukes:
